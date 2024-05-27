@@ -1,71 +1,82 @@
-<p>
-<img alt="C++" src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" width="60">
-<img alt="Git" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" width="60">
+
+
 </p>
 
-<h1> <img src="https://red.utec.edu.uy/wp-content/uploads/2018/11/09-Isotipo-1.png" width="25"/> UTEC - PP - <b>Buscaminas</b></h1>
+<p align="center">
+ <img src="https://github.com/MatiasAlfaroDev/UTEC-PP-Buscamin/assets/101219427/9e77c53a-caab-4588-8439-05c6c083f17d" />
+</p>
 
 
-<p> El juego consta de la exploración de un tablero en el cual existen minas escondidas. El jugador debe explorar completamente dicho tablero 
-<b>marcando todas las minas escondida para poder ganar</b> , y perderá la partida si en algún momento hace explotar una mina. <br><em>Su puntaje se definira 
-en base al tiempo en que se logre marcar todas las minas escondidas.</em></p>
+
+<h1> <img src="https://red.utec.edu.uy/wp-content/uploads/2018/11/09-Isotipo-1.png" width="25"/> UTEC - PP - <b>Minesweeper</b></h1>
+
+<p>The game consists of exploring a board where hidden mines are present. The player must fully explore this board by
+<b>marking all the hidden mines</b> in order to win. The player will lose the game if they detonate a mine at any time.
+<em>The player's score will be determined based on the time it takes to mark all the hidden mines.</em></p>
 
 <h2> </h2>
 
-### Compilar y Jugar
-
+### Compile & Play
+Use Latest G++ version, choose an easy directory for <em>git clone</em>.
 ```
+cd <directory>
 git clone https://github.com/MatiasAlfaroDev/UTEC-PP-Buscaminas.git
-cd Buscaminas
-compilar con c++
-./Buscaminas
+g++ -o minesweeper.exe main.cpp
+./minesweeper.exe
 ```
+<hr>
+
+### How the game works
+<p>
+Each cell on the board will be identified by its row and column number (ranging from 0 to 7). <em>Initially, the board will show all unexplored squares. Once you start playing, the board will start to change. After the first move if there are adjacent mines, it will show the number of mines it has surrounding it.</em>
+ 
+ ### Difficulty
+ * #### Beginner <em>(this is the way thats intendend in the lab)</em>
+      * The game starts with an <b>8 x 8 board</b>.
+      * There will be <b>16 mines</b> scattered throughout the board.
+      * The maximum amount of flags placed at once is <b>16</b>
 <h2></h2>
 
-<h3> ⚙️ Funcionamiento del Juego</h3>
+ * #### Intermediate
+      * The game starts with an <b>16 x 16 board</b>.
+      * There will be <b>40 mines</b> scattered throughout the board.
+      * The maximum amount of flags placed at once is <b>40</b>
+<h2></h2>
 
-* Se cuenta con un tablero de 8 x 8
-* Cada celda será identificada por los números respectivos de fila y columna.
-* En todo el tablero estarán escondidas 16 minas.
+ * #### Advanced
+      * The game starts with an <b>16 x 30 board</b>.
+      * There will be <b>99 mines</b> scattered throughout the board.
+      * The maximum amount of flags placed at once is <b>99</b>
+</p>
+<hr>
+
+
+### Basic aspects of Playing 
+<p>
   
-<em>Inicialmente el tablero mostrará todas las casillas inexploradas. En caso de tener minas adyacentes mostrara el número que tiene. </em>
+The player has 2 possible moves each turn:
 
-* En caso de no tener ninguna mina mostrara el carácter vacío <b>‘ ’</b>
-* Las casillas marcadas por el jugador como sospechosas son indicadas con una <b>‘x’</b>
-* Las casillas con bombas se indican con una <b>‘B’</b>
+  * <b>OPTION [E]</b> Cascade reveal of what was in a previously unexplored set of cells. If the cell did not have any adjacent mines, <em>it will expand the       exploration to its neighboring cells until there are cells with adjacent mines.</em>
 
-<h2> </h2>
+  * <b>OPTION [F]</b> Flags a previously unexplored cell as suspicious, if the cell had been already flagged it will remove the flag mark from that square. <em>In order
+to win you'll have to Flag every mine</em>
 
-<h3> <img src= "https://images.emojiterra.com/google/android-12l/512px/1f579.png" width="25 "/> Funcionamiento del Jugador  </h3>
+To indicate their move, the player must enter the correspondant letter (M or E), followed by a space and then the coordinates of the row and column, respectively.<em>We're working on enhance this by listening to the clicks of the mouse, so you can right click where you wanna explore and left click where you want to Flag.</em>
 
-<p>El jugador cuenta con 2 posibles jugadas en cada turno:  <e>[E] Explorar y [M] Marcar</e>.
-
-Para indicar su jugada, <b>el jugador presiona una de las opciones, seguido de un espacio
-y luego los números de la fila y la columna, respectivamente.</b> <br> 
-
-* <b>OPCION [E]</b> Revela lo que se encontraba en una casilla previamente inexplorada. 
-En caso que la celda no tuviera ninguna mina adyacente deberá expandir la exploración hacia sus celdas vecinas, 
-de manera que se finaliza cuando existan celdas con minas adyacentes.
-
-* <b>OPCION [M]</b> Marcar deja marcada como sospechosa una casilla previamente inexplorada, o remueve la marca de una casilla ya marcada. 
-
+</p>
 
 <h2> </h2>
 
-<h3> 📜 Reglas del Juego </h3>
+### The Rules 
 
-* Solo se pueden marcar <b>hasta 16 casillas</b>.
-* El jugador gana cuando haya revelado <b>48 casillas</b>.
+* Only up to <b>16 cells</b> can be marked.
+* The player wins when they have revealed <b>48 cells.</b>
+<em>Besides revealing all the board, it's a must that every mine needs to be <b>Flagged</b></em>
 
-### Las jugadas sin efecto son:
-* Explorar en una casilla que está marcada.
-* Marcar o Explorar una casilla ya explorada.
-* Marcar o Explorar en casillas inexistentes.
-* Utilizar un formato inadecuado de jugada.
-
-
-
-
-
-
-
+### Invalid moves:
+* Exploring a cell that is <b>Flagged</b>.
+* <b>Flagging</b> or <b>Exploring</b> a cell that has already been explored.
+* <b>Marking</b> or <b>Exploring</b> in nonexistent squares.<em>Outside the board</em>
+* Using an incorrect move format.
+<img alt="C++" src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" width="60">
+<img alt="Git" src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" width="60">
