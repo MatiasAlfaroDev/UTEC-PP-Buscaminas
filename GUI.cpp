@@ -11,16 +11,36 @@ void startingGUI() {
   /___________________ /____/|__/|__/\___/\___/ .___/\___/_/   
                       |_____________________ /_/_____________/ 
                       
-                                         ¿CAN YOU FIND 'EM ALL?
-                        
+                                         ¿CAN YOU FIND 'EM ALL?   
     )" << '\n';
 
-    std::cout << WHITE << "              |A| " << GREEN << "Beginner " << WHITE << "[8 x 8 - 16 BOMBS]" << std::endl;
+    std::cout << WHITE << "              |A| " <<  MAGENTA << "Beginner " << WHITE << "[8 x 8 - 16 BOMBS]" << std::endl;
     std::cout << WHITE << "      " << std::endl;
-    std::cout << WHITE << "              |B| " << YELLOW << "Intermediate " << WHITE << "[16 x 16 - 40 BOMBS]" << std::endl;
+    std::cout << WHITE << "              |B| " << MAGENTA << "Intermediate " << WHITE << "[16 x 16 - 40 BOMBS]" << std::endl;
     std::cout << WHITE << "          " << std::endl;
-    std::cout << WHITE << "              |C| " << RED<< "Advanced " << WHITE << "[16 x 30 - 99 BOMBS]" << std::endl;
+    std::cout << WHITE << "              |C| " << MAGENTA << "Advanced " << WHITE << "[16 x 30 - 99 BOMBS]" << std::endl;
     std::cout << WHITE << "      " << std::endl;
-    std::cout << CYAN  << "  ___________________________________________________________" << std::endl;
-    std::cout << CYAN  << "  -Miney: "<< WHITE <<"Welcome! Please SELECT a DIFFICULT to start playing: ";
+    std::cout << MAGENTA << "  ___________________________________________________________" << std::endl;
+    std::cout << MAGENTA << "  -Miney: "<< WHITE <<"Welcome! Please SELECT a DIFFICULT to start playing: ";
 };
+
+void rules(int bombs) {
+
+    std::cout << WHITE << "  ____________________________________________________________" << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA <<"                            RULES" << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "Only up to " << 16 << " cells can be FLAGGED" << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "You can't EXPLORE a cell that is already FLAGGED" << std::endl;
+    
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "Neither, FLAG or EXPLORE a explored one." << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "FLAG or EXPLORE outside the board is ilegall" << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "Using an incorrect move format." << std::endl;
+    std::cout << WHITE << "      " << std::endl;
+    std::cout << WHITE << "  ____________________________________________________________" << std::endl;
+};
+

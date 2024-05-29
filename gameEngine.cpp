@@ -1,22 +1,25 @@
 #include <iostream>
-#include <ctime>
+#include <time.h>
 #include <vector>
 
 #define EMPTY_CELL 0
 #define BOMB -1
 #define FLAG -2
 #define REVEALED -8
+#define GUIDE -3
 
 // ANSI color codes
-const std::string RESET = "\033[0m";
-const std::string BLUE = "\033[34m";
-const std::string GREEN = "\033[32m";
-const std::string RED = "\033[31m";
-const std::string MAGENTA = "\033[35m";
-const std::string YELLOW = "\033[33m";
-const std::string CYAN = "\033[36m";
-const std::string WHITE = "\033[37m";
-const std::string BRIGHT_WHITE = "\033[97m";
+#define RESET "\033[0m"
+#define BLUE "\033[36m"
+#define DARK_BLUE "\033[34m"
+#define GREEN "\033[32m"
+#define RED "\033[91m"
+#define DARK_RED "\033[31m"
+#define MAGENTA  "\033[95m"
+#define CYAN  "\033[36m"
+#define VIOLET "\033[35m"
+#define WHITE  "\033[37m"
+#define GREY "\033[90m"
 
 // Function to get color code for a number
 std::string getColor(int num) {
@@ -26,11 +29,11 @@ std::string getColor(int num) {
         case 1: return BLUE;
         case 2: return GREEN;
         case 3: return RED;
-        case 4: return MAGENTA;
-        case 5: return YELLOW;
+        case 4: return DARK_BLUE;
+        case 5: return DARK_RED;
         case 6: return CYAN;
-        case 7: return WHITE;
-        case 8: return BRIGHT_WHITE;
+        case 7: return MAGENTA;
+        case 8: return GREY;
         default: return RESET;
     }
 }
@@ -38,21 +41,11 @@ std::string getColor(int num) {
 // Dynamic Board Generation (By Difficulty)
 std::vector<std::vector<int>> dynamicBoard(int ROWSIZE, int COLSIZE) {
 
-    std::vector<std::vector<int>> board(ROWSIZE, std::vector<int>(COLSIZE, EMPTY_CELL));
+    std::vector<std::vector<int>> board(0, std::vector<int>(0, GUIDE));
+    std::vector<std::vector<int>> board(ROWSIZE + 1, std::vector<int>(COLSIZE + 1, EMPTY_CELL));
     return board;
 }
 
-bool gameOver(const std::vector<std::vector<int>>& board) {
-
-    for (const auto& row : board) {
-        for (int cell : row) {
-            if (cell == BOMB) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 
 // Dynamic bomb generation. Number of Bombs / Empty Board (dynamicBoard)
 void randBombGen(int bombNum, std::vector<std::vector<int>>& board) {
@@ -123,13 +116,13 @@ void boardPrint(const std::vector<std::vector<int>>& board, bool revealBombs = f
         for (int j = 0; j < board[0].size(); j++) {
 
             if (revealBombs && board[i][j] == BOMB) {
-                std::cout << "* ";
+                std::cout <<  MAGENTA << "* " << WHITE;
 
             } else if (board[i][j] == EMPTY_CELL || board[i][j] == BOMB) {
                 std::cout << "- ";
 
             } else if (board[i][j] == REVEALED) {
-                std::cout << ". ";
+                std::cout << GREY <<  ". " << WHITE;
 
             } else if (board[i][j] == FLAG) {
                 std::cout << "⚑ ";
