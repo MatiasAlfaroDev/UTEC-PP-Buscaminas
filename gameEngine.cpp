@@ -116,7 +116,7 @@ void boardPrint(const std::vector<std::vector<int>>& board, bool revealBombs = f
         for (int j = 0; j < board[0].size(); j++) {
 
             if (revealBombs && board[i][j] == BOMB) {
-                std::cout <<  MAGENTA << "* " << WHITE;
+                std::cout <<  MAGENTA <<"* " << WHITE;
 
             } else if (board[i][j] == EMPTY_CELL || board[i][j] == BOMB) {
                 std::cout << "- ";
