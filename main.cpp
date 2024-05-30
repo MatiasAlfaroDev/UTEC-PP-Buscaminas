@@ -15,7 +15,7 @@ int main() {
 
                 if (difficulty == 'A') { boardSizeX = boardSizeY = 8, bombsCount = 16; break; }
                     else if  (difficulty == 'B') { boardSizeX = boardSizeY = 16, bombsCount = 40; break; }
-                        else if  (difficulty == 'C') { boardSizeX = 10, boardSizeY = 45, bombsCount = 50; break; }
+                        else if  (difficulty == 'C') { boardSizeX = 10, boardSizeY = 45, bombsCount = 99; break; }
                             else { std::cout << MAGENTA  << "  ____________________________________________________" << std::endl << "  -Miney: "<< WHITE <<"Don't be a meanie, select a valid DIFFICULTY: "; 
                                 std::cin >> difficulty; }
         };
