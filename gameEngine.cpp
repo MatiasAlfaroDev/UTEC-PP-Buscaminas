@@ -6,10 +6,8 @@
 #define BOMB -1
 #define FLAG -2
 #define REVEALED -8
-#define GUIDE -3
 
 // ANSI color codes
-#define RESET "\033[0m"
 #define BLUE "\033[36m"
 #define DARK_BLUE "\033[34m"
 #define GREEN "\033[32m"
@@ -34,18 +32,16 @@ std::string getColor(int num) {
         case 6: return CYAN;
         case 7: return MAGENTA;
         case 8: return GREY;
-        default: return RESET;
+        default: return WHITE;
     }
 }
 
 // Dynamic Board Generation (By Difficulty)
 std::vector<std::vector<int>> dynamicBoard(int ROWSIZE, int COLSIZE) {
 
-    std::vector<std::vector<int>> board(0, std::vector<int>(0, GUIDE));
     std::vector<std::vector<int>> board(ROWSIZE + 1, std::vector<int>(COLSIZE + 1, EMPTY_CELL));
     return board;
 }
-
 
 // Dynamic bomb generation. Number of Bombs / Empty Board (dynamicBoard)
 void randBombGen(int bombNum, std::vector<std::vector<int>>& board) {
@@ -116,7 +112,7 @@ void boardPrint(const std::vector<std::vector<int>>& board, bool revealBombs = f
         for (int j = 0; j < board[0].size(); j++) {
 
             if (revealBombs && board[i][j] == BOMB) {
-                std::cout <<  MAGENTA <<"* " << WHITE;
+                std::cout << MAGENTA << "* " << WHITE;
 
             } else if (board[i][j] == EMPTY_CELL || board[i][j] == BOMB) {
                 std::cout << "- ";
@@ -128,7 +124,7 @@ void boardPrint(const std::vector<std::vector<int>>& board, bool revealBombs = f
                 std::cout << "⚑ ";
 
             } else {
-                std::cout << getColor(board[i][j]) << board[i][j] << RESET << " "; // Display number of bombs in adjacent cells with color
+                std::cout << getColor(board[i][j]) << board[i][j] << WHITE << " "; // Display number of bombs in adjacent cells with color
             }
         }
         std::cout << std::endl;

@@ -30,7 +30,7 @@ void rules(int bombs) {
     std::cout << WHITE << "      " << std::endl;
     std::cout << MAGENTA <<"                            RULES" << std::endl;
     std::cout << WHITE << "      " << std::endl;
-    std::cout << MAGENTA << "       // " << WHITE  << "Only up to " << 16 << " cells can be FLAGGED" << std::endl;
+    std::cout << MAGENTA << "       // " << WHITE  << "Only up to " << bombs << " cells can be FLAGGED" << std::endl;
     std::cout << WHITE << "      " << std::endl;
     std::cout << MAGENTA << "       // " << WHITE  << "You can't EXPLORE a cell that is already FLAGGED" << std::endl;
     
@@ -43,4 +43,3 @@ void rules(int bombs) {
     std::cout << WHITE << "      " << std::endl;
     std::cout << WHITE << "  ____________________________________________________________" << std::endl;
 };
-

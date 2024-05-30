@@ -15,7 +15,7 @@ int main() {
 
                 if (difficulty == 'A') { boardSizeX = boardSizeY = 8, bombsCount = 16; break; }
                     else if  (difficulty == 'B') { boardSizeX = boardSizeY = 16, bombsCount = 40; break; }
-                        else if  (difficulty == 'C') { boardSizeX = 16, boardSizeY = 30, bombsCount = 99; break; }
+                        else if  (difficulty == 'C') { boardSizeX = 10, boardSizeY = 45, bombsCount = 50; break; }
                             else { std::cout << MAGENTA  << "  ____________________________________________________" << std::endl << "  -Miney: "<< WHITE <<"Don't be a meanie, select a valid DIFFICULTY: "; 
                                 std::cin >> difficulty; }
         };
@@ -46,21 +46,23 @@ int main() {
     // Game loop, returns false if a bomb gets hit.
     while (true) {
 
-        boardPrint(gameBoard);// Print the board
-                      //<< WHITE <<"Please, enter a ROW number: |1 - " << boardSizeX << "| & Column |1 - " << boardSizeY << "| & ACTION |E -> Explore | F -> Flag]| ";
+        boardPrint(gameBoard);
 
         // User input.
-        int x, y;
+        int x, y, moves, flags;
         char action;
 
+        std::cout << MAGENTA  << std::endl << MAGENTA  << " MOVES: " << WHITE << moves << MAGENTA << "                              FLAGS: " << WHITE << flags << MAGENTA << "/" <<  WHITE << bombsCount << std::endl;
         std::cout << MAGENTA << " _________________________________________________" << std::endl << " -Miney: " << WHITE << "Please, enter COORDINATES |ROW COL ACTION|:";
+        
         std::cin >> x >> y >> action;
         system("clear");
 
         // Validate user COORDINATES input.
         if (x < 0 || x >= boardSizeX || y < 0 || y >= boardSizeY) {
 
-            std::cout << MAGENTA << " ______________________________________" << std::endl << " -Miney: " << WHITE << "Please, enter valid COORDINATES." << std::endl;
+            std::cout << MAGENTA << " ______________________________________" << std::endl << " -Miney: " << WHITE << "Please, enter valid COORDINATES." << WHITE << std::endl << "      " << std::endl;
+            std::cout << WHITE << "      " << std::endl;
             continue;
         } 
 
@@ -68,18 +70,19 @@ int main() {
         if (action != 'E' && action != 'F') {
 
             
-            std::cout << MAGENTA  << " __________________________________" << std::endl << "-Miney: "<< WHITE <<"Please enter a valid ACTION." << WHITE << std::endl;
+            std::cout << MAGENTA  << " __________________________________" << std::endl << "-Miney: "<< WHITE <<"Please enter a valid ACTION." << WHITE << std::endl << "      " << std::endl;
+            std::cout << WHITE << "      " << std::endl;
             continue;
         }
         
         // Take action based on user input
         if (action == 'E') {
 
-            if (gameBoard[x][y] == REVEALED)     std::cout << MAGENTA  << " __________________________________________________________" << std::endl << " -Miney: "<< WHITE <<"Invalid input. You can't Explore a discovered cell." << WHITE << std::endl;
+            if (gameBoard[x][y] == REVEALED) std::cout << MAGENTA  << " __________________________________________________________" << std::endl << " -Miney: "<< WHITE <<"Invalid input. You can't Explore a discovered cell." << WHITE << std::endl << "      " << std::endl;
+            moves++;
 
-
-            if (exploreBoard(x, y, gameBoard)) { // (if (TRUE)) Triggers when a bombs is found.
-
+            if (exploreBoard(x, y, gameBoard) ) { // (if (TRUE)) Triggers when a bombs is found.
+                
                 // Print the board with bombs revealed.
                 boardPrint(gameBoard, true);
                 std::cout << MAGENTA  << " _________________________________" << std::endl << " -Miney: " << WHITE << "You hit a bomb. GAME OVER.\n" << WHITE << std::endl;
@@ -92,9 +95,10 @@ int main() {
             // Toggle flag on the cell
             switch(gameBoard[x][y]) {
 
-                case REVEALED : std::cout << MAGENTA  << " _______________________________________________________" << std::endl << " -Miney: "<< WHITE <<"Invalid input. You can't flag a discovered cell." << WHITE << std::endl; continue;
-                case FLAG : gameBoard[x][y] = EMPTY_CELL; continue;
-                case EMPTY_CELL : gameBoard[x][y] = FLAG; continue;
+                case REVEALED : std::cout << MAGENTA  << " _______________________________________________________" << std::endl << " -Miney: "<< WHITE <<"Invalid input. You can't flag a discovered cell." << WHITE << std::endl << "      " << std::endl; continue;
+                case FLAG : gameBoard[x][y] = EMPTY_CELL; moves++ ; flags--; continue;
+                case EMPTY_CELL : gameBoard[x][y] = FLAG; moves++; flags++; continue;
+                case BOMB : gameBoard[x][y] = FLAG; moves++; flags++; continue;
                 default : std::cerr << RED <<  "[CRITICAL ERROR] Unknow State. Check Code!\n" << WHITE; continue; // It never should reach this.
             }   
         }
