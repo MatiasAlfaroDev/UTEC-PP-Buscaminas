@@ -39,7 +39,7 @@ std::string getColor(int num) {
 // Dynamic Board Generation (By Difficulty)
 std::vector<std::vector<int>> dynamicBoard(int ROWSIZE, int COLSIZE) {
 
-    std::vector<std::vector<int>> board(ROWSIZE + 1, std::vector<int>(COLSIZE + 1, EMPTY_CELL));
+    std::vector<std::vector<int>> board(ROWSIZE, std::vector<int>(COLSIZE, EMPTY_CELL));
     return board;
 }
 
