@@ -1,6 +1,8 @@
 # Ignore Visual Studio Code workspace settings folder
 .vscode/
 
+
+
 # Ignore Visual Studio Code specific files
 *.code-workspace
 
